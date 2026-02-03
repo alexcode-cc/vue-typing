@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { useTypingStore } from '../stores/typingStore'
+import { DIFFICULTY_CONFIG } from '../data/wordLibraries.js'
 
 const store = useTypingStore()
 
