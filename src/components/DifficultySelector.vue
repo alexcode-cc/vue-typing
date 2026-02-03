@@ -58,8 +58,7 @@ watchEffect(() => {
           <div class="flex items-center gap-3">
             <div
               class="w-3 h-3 rounded-full transition-transform duration-300"
-              :class="selectedDifficulty === option.value ? 'scale-125' : 'scale-100'"
-              :class="DIFFICULTY_CONFIG[option.value].color"
+              :class="[selectedDifficulty === option.value ? 'scale-125' : 'scale-100', DIFFICULTY_CONFIG[option.value].color]"
             ></div>
           </div>
         </div>
