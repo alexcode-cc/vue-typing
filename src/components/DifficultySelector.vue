@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, watchEffect, onMounted } from 'vue'
 import { useTypingStore } from '../stores/typingStore'
 
 const store = useTypingStore()
