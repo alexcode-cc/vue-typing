@@ -25,6 +25,11 @@ const displayText = computed(() => {
       // 還未輸入的字符
       result.push({ char: fullText[i], status: 'pending' })
     }
+
+    // 在每個單字之後添加額外空格 (以空格分隔的單字)
+    if (fullText[i] === ' ') {
+      result.push({ char: ' ', status: 'space', class: 'whitespace-pre' })
+    }
   }
 
   // 如果還沒輸入完，顯示光標
