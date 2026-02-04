@@ -6,14 +6,21 @@ import Leaderboard from './components/Leaderboard.vue'
 </script>
 
 <template>
-  <div class="min-h-screen py-8 px-4">
-    <div class="max-w-4xl mx-auto">
+  <div class="min-h-screen py-8 px-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div class="max-w-5xl mx-auto">
       <!-- Header -->
-      <header class="text-center mb-8">
-        <h1 class="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-          打字練習網
-        </h1>
-        <p class="text-zinc-400">提升你的打字速度和準確度</p>
+      <header class="text-center mb-10">
+        <div class="inline-flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            打字練習網
+          </h1>
+        </div>
+        <p class="text-slate-500">提升你的打字速度和準確度</p>
       </header>
 
       <!-- Difficulty Selector -->

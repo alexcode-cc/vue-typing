@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add -A)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nstyle: 全面重設 UI 介面採用現代化漸變風格\n\n- 更新主題為清新藍紫漸變背景\n- 為所有組件添加玻璃擬態效果\n- 新增 SVG 圖標和懸停動畫\n- 優化組件佈局和視覺層次\n- 更新字體顏色和對比度\n- 新增選擇高亮和焦點樣式\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}

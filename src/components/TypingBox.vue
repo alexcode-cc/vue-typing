@@ -92,25 +92,36 @@ store.generateText(store.difficulty)
 </script>
 
 <template>
-  <div class="bg-zinc-800/50 backdrop-blur rounded-2xl p-6 border border-zinc-700/50">
+  <div class="bg-white/70 backdrop-blur-xl rounded-2xl p-6 border border-white/50 shadow-xl shadow-blue-500/5">
     <!-- 提示信息 -->
     <div v-if="!store.isTyping && store.userInput.length === 0" class="mb-4">
-      <p class="text-zinc-400 text-sm">點擊輸入框開始，或按 Ctrl+Enter 開始</p>
+      <div class="flex items-center justify-center gap-2 text-slate-500">
+        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+        </svg>
+        <p class="text-sm">點擊輸入框開始，或按 Ctrl+Enter 開始</p>
+      </div>
     </div>
 
     <!-- 打字顯示區 -->
     <div
-      class="bg-zinc-900/50 rounded-xl p-4 min-h-[120px] mb-4 font-mono text-lg leading-relaxed"
+      class="bg-white/80 rounded-xl p-5 mb-4 font-mono text-lg leading-relaxed border border-slate-200 shadow-sm"
       @click="focusInput"
     >
       <span
         v-for="(item, index) in displayText"
         :key="index"
         :class="[
-          'inline-block transition-colors duration-100',
-          item.status === 'correct' ? 'text-green-400' : '',
-          item.status === 'incorrect' ? 'text-red-400' : '',
-          item.status === 'pending' ? 'text-zinc-600' : '',
+          'inline-block transition-colors duration-100 px-0.5',
+          item.status === 'correct'
+            ? 'text-emerald-600 bg-emerald-50 rounded'
+            : '',
+          item.status === 'incorrect'
+            ? 'text-red-500 bg-red-50 rounded'
+            : '',
+          item.status === 'pending'
+            ? 'text-slate-300'
+            : '',
           item.class || ''
         ]"
       >
@@ -121,14 +132,17 @@ store.generateText(store.difficulty)
     <!-- 狀態標籤 -->
     <div class="flex justify-between items-center mb-4">
       <span
-        class="px-3 py-1 rounded-full text-sm font-medium"
-        :class="DIFFICULTY_CONFIG[store.difficulty].color + '/20 text-' + DIFFICULTY_CONFIG[store.difficulty].color.split('-')[1] + '-400'"
+        class="px-4 py-2 rounded-full text-sm font-semibold shadow-sm"
+        :class="DIFFICULTY_CONFIG[store.difficulty].color + ' text-white'"
       >
         {{ DIFFICULTY_CONFIG[store.difficulty].label }}
       </span>
-      <span class="text-zinc-500 text-sm">
-        進度: {{ store.userInput.length }} / {{ store.currentText.length }}
-      </span>
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+          <span class="text-sm font-medium text-slate-600">{{ store.userInput.length }}</span>
+        </div>
+        <span class="text-slate-500 text-sm">/ {{ store.currentText.length }}</span>
+      </div>
     </div>
 
     <!-- 輸入框 -->
@@ -136,18 +150,20 @@ store.generateText(store.difficulty)
       ref="textareaRef"
       v-model="inputValue"
       @keydown="handleKeyDown"
-      class="w-full bg-zinc-900/50 border border-zinc-700 rounded-xl p-4 font-mono text-lg text-zinc-100 resize-none focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+      class="w-full bg-white/80 border-2 border-slate-200 rounded-xl p-4 font-mono text-lg text-slate-800 resize-none focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all shadow-sm"
       rows="2"
       placeholder="請開始打字..."
       :disabled="store.isTyping && store.userInput.length > 0"
     ></textarea>
 
     <!-- 快捷鍵提示 -->
-    <div class="mt-4 text-center">
-      <p class="text-zinc-600 text-xs">
-        <kbd class="px-2 py-0.5 bg-zinc-800 rounded border border-zinc-700">Ctrl</kbd> + <kbd class="px-2 py-0.5 bg-zinc-800 rounded border border-zinc-700">Enter</kbd>
-        開始打字
-      </p>
+    <div class="mt-4 flex justify-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-lg">
+        <kbd class="px-2 py-1 bg-white border border-slate-300 rounded shadow-sm text-xs font-semibold text-slate-600">Ctrl</kbd>
+        <span class="text-slate-400">+</span>
+        <kbd class="px-2 py-1 bg-white border border-slate-300 rounded shadow-sm text-xs font-semibold text-slate-600">Enter</kbd>
+        <span class="text-slate-500 text-sm ml-2">開始打字</span>
+      </div>
     </div>
   </div>
 </template>
